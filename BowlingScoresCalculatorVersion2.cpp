@@ -47,11 +47,15 @@
 *     ASCII art characters; use for loop and 2D array for title-scrolling animation; 
 *     then use nested for loops to display name, scores, and average score from from 
 *     each member of struct array
-*    
+* 
 ********************************within main**************************************
 * 11: within else statement, call functions with appropiate arguments
 * 
-********************************************************************************/
+*******************************program revision**********************************
+* 12: alter code so program reads 5 scores from text file, calculates a new 
+*     average, and prints the 5th score and the new average to the console
+
+*******************************************************************************/
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -63,7 +67,7 @@ using namespace std;
 
 //Step 1
 const int bowlersCount = 10;
-const int scoresCount = 4;
+const int scoresCount = 5;//Step 12
 const int uniqueCharacters = 13;
 const int lineCount = 8;
 
@@ -218,157 +222,159 @@ void PrettyPrintResults(bowler player[])
 		{"     ", "     ", "     ", "     ", "     ", "     ", "     ", "     "}//space
 	};
 
+
+	//Step 12 also below; setw() altered in numerous places to accomodate 5th score
 	//********************************begin scrolling title******************************
 	//from right to left, each subsequent block adds the next ASCII character from 2D array
 	//this produces a right-to-left scrolling effect for title
-	cout << setw(5) << setfill('=') << '=' << endl;
+	cout << setw(20) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[s][index] << endl;
 
-	cout << setw(5) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(20) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(11) << setfill('=') << '=' << endl;
+	cout << setw(26) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(11) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(26) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(17) << setfill('=') << '=' << endl;
+	cout << setw(32) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[r][index] << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(17) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(32) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(24) << setfill('=') << '=' << endl;
+	cout << setw(39) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[o][index] << asciiFont[r][index] << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(24) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(39) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(30) << setfill('=') << '=' << endl;
+	cout << setw(45) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[c][index] << asciiFont[o][index] << asciiFont[r][index] 
 		<< asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(30) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(45) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(38) << setfill('=') << '=' << endl;
+	cout << setw(53) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[S][index] << asciiFont[c][index] << asciiFont[o][index] << asciiFont[r][index]
 		<< asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(38) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(53) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(43) << setfill('=') << '=' << endl;
+	cout << setw(58) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[space][index] << asciiFont[S][index] << asciiFont[c][index] << asciiFont[o][index]
 		<< asciiFont[r][index] << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(43) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(58) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(50) << setfill('=') << '=' << endl;
+	cout << setw(65) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[g][index] << asciiFont[space][index] << asciiFont[S][index] << asciiFont[c][index] 
 		<< asciiFont[o][index] << asciiFont[r][index] << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(50) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(65) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(57) << setfill('=') << '=' << endl;
+	cout << setw(72) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[n][index] << asciiFont[g][index] << asciiFont[space][index] << asciiFont[S][index] 
 		<< asciiFont[c][index] << asciiFont[o][index] << asciiFont[r][index] << asciiFont[e][index] 
 		<< asciiFont[s][index] << endl;
 
-	cout << setw(57) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(72) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(60) << setfill('=') << '=' << endl;
+	cout << setw(75) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[i][index] << asciiFont[n][index] << asciiFont[g][index] << asciiFont[space][index] 
 		<< asciiFont[S][index] << asciiFont[c][index] << asciiFont[o][index] << asciiFont[r][index] 
 		<< asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(60) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(75) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(63) << setfill('=') << '=' << endl;
+	cout << setw(78) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[l][index] << asciiFont[i][index] << asciiFont[n][index] << asciiFont[g][index]
 		<< asciiFont[space][index] << asciiFont[S][index] << asciiFont[c][index] << asciiFont[o][index]
 		<< asciiFont[r][index] << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(63) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(78) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(73) << setfill('=') << '=' << endl;
+	cout << setw(88) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[w][index] << asciiFont[l][index] << asciiFont[i][index] << asciiFont[n][index] 
 		<< asciiFont[g][index] << asciiFont[space][index] << asciiFont[S][index] << asciiFont[c][index] 
 		<< asciiFont[o][index] << asciiFont[r][index] << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(73) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(88) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(80) << setfill('=') << '=' << endl;
+	cout << setw(95) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[o][index] << asciiFont[w][index] << asciiFont[l][index] << asciiFont[i][index] 
 		<< asciiFont[n][index] << asciiFont[g][index] << asciiFont[space][index] << asciiFont[S][index] 
 		<< asciiFont[c][index] << asciiFont[o][index] << asciiFont[r][index] << asciiFont[e][index] 
 		<< asciiFont[s][index] << endl;
 
-	cout << setw(80) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(95) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//*********************************************************************************
-	cout << setw(87) << setfill('=') << '=' << endl;
+	cout << setw(102) << setfill('=') << '=' << endl;
 	for (int index = 0; index < lineCount; index++)
 		cout << asciiFont[B][index] << asciiFont[o][index] << asciiFont[w][index]
 		<< asciiFont[l][index] << asciiFont[i][index] << asciiFont[n][index] << asciiFont[g][index]
 		<< asciiFont[space][index] << asciiFont[S][index] << asciiFont[c][index] << asciiFont[o][index]
 		<< asciiFont[r][index] << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(87) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(102) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	system("cls");
 	//***************************end scrolling title*****************************************
 
 	//**************************print title on more time*************************************
-	cout << setw(90) << setfill('=') << '=' << endl;
+	cout << setw(105) << setfill('=') << '=' << endl;
 
 	for (int index = 0; index < lineCount; index++)
-		cout << "  " << asciiFont[B][index] << asciiFont[o][index] << asciiFont[w][index]
+		cout << "         " << asciiFont[B][index] << asciiFont[o][index] << asciiFont[w][index]
 		<< asciiFont[l][index] << asciiFont[i][index] << asciiFont[n][index] << asciiFont[g][index]
 		<< asciiFont[space][index] << asciiFont[S][index] << asciiFont[c][index] << asciiFont[o][index]
 		<< asciiFont[r][index] << asciiFont[e][index] << asciiFont[s][index] << endl;
 
-	cout << setw(90) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
+	cout << setw(105) << setfill('=') << '=' << setfill(' ') << endl << endl << endl;
 	//******************************************************************************************
 
 	//******************************print headers for data**************************************
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	cout << setw(15) << "Name" << setw(15) << "Score 1" << setw(15) << "Score 2" << setw(15)
-		 << "Score 3" << setw(15) << "Score 4" << setw(15) << "Avg Score" << endl;
-	cout << setw(90) << setfill('-') << '-' << setfill(' ') << endl;
+	<< "Score 3" << setw(15) << "Score 4" << setw(15) << "Score 5" << setw(15) << "Avg Score" << endl;
+	cout << setw(105) << setfill('-') << '-' << setfill(' ') << endl;
 	this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	//******************************************************************************************
 
@@ -380,7 +386,7 @@ void PrettyPrintResults(bowler player[])
 			cout << setw(15) << player[iBowler].scores[score];
 
 		cout << setw(15) << player[iBowler].avgScore << endl;
-		cout << setw(90) << setfill('-') << '-' << setfill(' ') << endl;
+		cout << setw(105) << setfill('-') << '-' << setfill(' ') << endl;
 		this_thread::sleep_for(chrono::milliseconds(scrollTime));
 	}
 	//********************************************************************************************
